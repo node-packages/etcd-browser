@@ -31,3 +31,6 @@ If you use a secured etcd:
  * ETCDCTL_CA_FILE
  * ETCDCTL_KEY_FILE
  * ETCDCTL_CERT_FILE
+If you use a proxy to visit etcd with socks 
+ * PROXY_HOST
+ * PROXY_PORT  
