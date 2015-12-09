@@ -2,10 +2,14 @@ var url = require('url');
 var path = require('path');
 var fs = require('fs');
 var http = require('http');
+var socksClient = require('socks-client')
+var socks = require('socksv5')
 
 var ca_file = process.env.ETCDCTL_CA_FILE || false;
 var key_file = process.env.ETCDCTL_KEY_FILE || false;
 var cert_file = process.env.ETCDCTL_CERT_FILE || false;
+var proxy_host = process.env.PROXY_HOST || '127.0.0.1';
+var proxy_port = process.env.PROXY_PORT || '4000';
 
 var requester = http.request;
 if(cert_file) {
@@ -29,7 +33,7 @@ if(cert_file) {
 
 var etcdHost = process.env.ETCD_HOST || '172.17.42.1';
 var etcdPort = process.env.ETCD_PORT || 4001;
-var serverPort = process.env.SERVER_PORT || 8000;
+var serverPort = process.env.SERVER_PORT || 8100;
 var publicDir = 'frontend';
 var authUser = process.env.AUTH_USER;
 var authPass = process.env.AUTH_PASS;
@@ -85,14 +89,21 @@ function proxy(client_req, client_res) {
     path: client_req.url,
     method: client_req.method
   };
-
   // https/certs supprt
   if(cert_file) {
     opts.key = fs.readFileSync(key_file);
     opts.ca = fs.readFileSync(ca_file);
     opts.cert = fs.readFileSync(cert_file);
-  }
 
+    if (proxy_host != undefined &&proxy_port != undefined){
+      var socksConfig = {
+        proxyHost: proxy_host,
+        proxyPort: proxy_port,
+        auths: [ socks.auth.None() ]
+      };
+      opts.agent = new socks.HttpsAgent(socksConfig)
+    }
+  }
   client_req.pipe(requester(opts, function(res) {
     // if etcd returns that the requested  page  has been moved
     // to a different location, indicates that the node we are
