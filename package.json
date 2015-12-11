@@ -1,0 +1,26 @@
+{
+  "name": "etcd-browser",
+  "version": "1.0.0",
+  "description": "## Demo [http://henszey.github.io/etcd-browser/](http://henszey.github.io/etcd-browser/)",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ringtail/etcd-browser.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ringtail/etcd-browser/issues"
+  },
+  "homepage": "https://github.com/ringtail/etcd-browser#readme",
+  "devDependencies": {
+    "node-etcd": "^4.2.1",
+    "request": "^2.67.0",
+    "socks-client": "^1.1.4",
+    "socksv5": "0.0.6"
+  }
+}
