@@ -8,8 +8,8 @@ var socks = require('socksv5')
 var ca_file = process.env.ETCDCTL_CA_FILE || false;
 var key_file = process.env.ETCDCTL_KEY_FILE || false;
 var cert_file = process.env.ETCDCTL_CERT_FILE || false;
-var proxy_host = process.env.PROXY_HOST || '127.0.0.1';
-var proxy_port = process.env.PROXY_PORT || '4000';
+var proxy_host = process.env.PROXY_HOST;
+var proxy_port = process.env.PROXY_PORT;
 
 var requester = http.request;
 if(cert_file) {
