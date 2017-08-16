@@ -14,7 +14,9 @@ app.controller('NodeCtrl', ['$scope','$http','$cookies', function($scope,$http,$
   $scope.getPrefix = function() {
     splitted = $scope.urlPrefix.split("/")
     if (splitted.length > 3) {
-      return splitted[0] + "//" + splitted[2] + "/" + splitted[3]
+      if (String(splitted[3]) != "v2") {
+        return splitted[0] + "//" + splitted[2] + "/" + splitted[3]
+      }
     }
     return splitted[0] + "//" + splitted[2]
   }
