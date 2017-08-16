@@ -11,7 +11,6 @@ app.controller('NodeCtrl', ['$scope','$http','$cookies', function($scope,$http,$
     $scope.urlPrefix = "http://" + document.location.host;
   }
 
-  $scope.urlPrefix = "http://" + document.location.host;
   $scope.getPrefix = function() {
     splitted = $scope.urlPrefix.split("/")
     return splitted[0] + "//" + splitted[2]
