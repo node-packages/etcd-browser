@@ -1,5 +1,6 @@
 .DS_Store
 .idea
 .settings/*
+node_modules/
 .project
 tmp
