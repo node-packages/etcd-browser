@@ -31,7 +31,7 @@ if(cert_file) {
   }
 }
 
-var etcdHost = process.env.ETCD_HOST || '172.17.42.1';
+var etcdHost = process.env.ETCD_HOST || 'localhost';
 var etcdPort = process.env.ETCD_PORT || 4001;
 var serverPort = process.env.SERVER_PORT || 8100;
 var publicDir = 'frontend';
